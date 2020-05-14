@@ -1,7 +1,5 @@
 import { AccountsEventI } from './../../entity/mongodb/main/MongoAccounts';
-import { EventI } from './../../entity/mongodb/main/MongoEvent';
 import { Accounts, AccountsI } from '../../entity/mongodb/main/MongoAccounts';
-import { Types } from 'mongoose';
 export default class ServiceAuth {
     constructor() {}
 

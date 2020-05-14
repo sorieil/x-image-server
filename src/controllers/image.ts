@@ -1,9 +1,9 @@
+import { Event } from './../entity/mongodb/main/MongoEvent';
 import { ImageLog } from './../entity/mongodb/main/MongoImageLog';
 import { Accounts } from './../entity/mongodb/main/MongoAccounts';
-import { Event } from '../entity/mongodb/main/MongoEvent';
 import { Request, Response } from 'express';
 import { responseJson, RequestRole, tryCatch } from '../util/common';
-import { validationResult, query, body, param } from 'express-validator';
+import { validationResult, param } from 'express-validator';
 import fs from 'fs';
 import sharp from 'sharp';
 import multer from 'multer';
@@ -25,7 +25,7 @@ const fileFilter = (req: Request, file: { mimetype: string }, cb: any) => {
                 'POST',
                 'invalid',
             );
-            cb('이미지 파일을 선택해 주세요.', true);
+            // cb('이미지 파일을 선택해 주세요.', true);
         }
 
         console.log('req:', req);
@@ -97,13 +97,22 @@ const apiPost = [
             //     `.${image.images[0].mimetype.split('/')[1]}`;
             const params = { Bucket: myBucket, Key: myKey, Body: filename };
             const uploadS3 = await s3.putObject(params).promise();
+            /** Error check code. Inside in puObject function.
+             * err => {
+                    if (err) {
+                        // handle errors
+                        return new Error('oops');
+                        responseJson(res, [err.message], method, 'fails');
+                    }
+                } */
             if (uploadS3) {
-                // Deleted Temporary an upload file. Don't need to sync.
-                fs.unlink(image.images[0].path, err => {
-                    console.log('Deleted result:', err);
-                });
-
                 // Get uploaded image information.
+                // Deleted Temporary an upload file. Don't need to sync.
+                if (image.images.length > 0 && typeof image.images) {
+                    fs.unlink(image.images[0].path, err => {
+                        console.log('Deleted result:', err);
+                    });
+                }
                 const getS3 = await s3
                     .getObject({
                         Bucket: myBucket,
@@ -164,6 +173,13 @@ const apiPost = [
                     );
                 }
             } else {
+                // Deleted Temporary an upload file. Don't need to sync.
+                if (image.images.length > 0 && typeof image.images) {
+                    fs.unlink(image.images[0].path, err => {
+                        console.log('Deleted result:', err);
+                    });
+                }
+
                 responseJson(res, ['업로드를 실패 했습니다.'], method, 'fails');
             }
         } catch (error) {
