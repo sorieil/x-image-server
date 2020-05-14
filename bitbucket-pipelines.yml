@@ -1,19 +1,17 @@
-module.exports = {
-    apps: [
-        {
-            name: "dev",
-            script: "./dist/app.js",
-            env: {
-                NODE_ENV: 'development',
-            }
-        },
-        {
-            name: "test",
-            script: "npm",
-            args: "run start",
-            env: {
-                NODE_ENV: 'production',
-            }
-        }
-    ]
-}
+image: atlassian/default-image:latest
+pipelines:
+    branches:
+        dev:
+            - step:
+                  name: Dev Build & Deploy
+                  deployment: dev
+                  script:
+                      - ssh ubuntu@$(echo $DEPLOY_SERVER_IP) 'bash -s' < ./dev-run.sh
+                      - echo 'Dev Deploy success!!!'
+        test:
+            - step:
+                  name: Test Build & Deploy
+                  deployment: test
+                  script:
+                      - ssh ubuntu@$(echo $DEPLOY_SERVER_IP) 'bash -s' < ./test-run.sh
+                      - echo 'Test Deploy success!!!'
