@@ -9,6 +9,6 @@ var RouterV1;
 (function (RouterV1) {
     RouterV1["root"] = "/";
     RouterV1["image"] = "/api/v1/image";
-    RouterV1["imageAdmin"] = "/api/v1/image";
+    RouterV1["imageAdmin"] = "/api/v1/image-admin";
 })(RouterV1 = exports.RouterV1 || (exports.RouterV1 = {}));
 //# sourceMappingURL=routerEnum.js.map

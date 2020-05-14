@@ -33,5 +33,5 @@ exports.AccountsSchema = new mongoose_1.Schema({
     },
     permission: { type: Array },
 });
-exports.Accounts = Connect_1.mongoManager.model('Accounts', exports.AccountsSchema);
+exports.Accounts = Connect_1.mongoManager.model('accounts', exports.AccountsSchema);
 //# sourceMappingURL=MongoAccounts.js.map

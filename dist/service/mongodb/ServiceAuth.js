@@ -9,12 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const MongoAdmins_1 = require("./../../entity/mongodb/main/MongoAdmins");
 const MongoAccounts_1 = require("../../entity/mongodb/main/MongoAccounts");
 class ServiceAuth {
     constructor() { }
     getAccountById(accounts) {
         return __awaiter(this, void 0, void 0, function* () {
             const query = yield MongoAccounts_1.Accounts.findById(accounts._id).lean();
+            return query;
+        });
+    }
+    getAdminById(admins) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = yield MongoAdmins_1.Admins.findById(admins._id).lean();
             return query;
         });
     }

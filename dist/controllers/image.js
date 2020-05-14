@@ -39,7 +39,7 @@ const fileFilter = (req, file, cb) => {
         console.log('req:', req);
     }
     catch (err) {
-        return false;
+        common_1.tryCatch(req.res, err);
     }
 };
 const upload = multer_1.default({

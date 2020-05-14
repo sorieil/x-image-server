@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
+const MongoAdmins_1 = require("./../entity/mongodb/main/MongoAdmins");
 const MongoAccounts_1 = require("./../entity/mongodb/main/MongoAccounts");
 const passport_jwt_1 = require("passport-jwt");
 const passport_1 = __importDefault(require("passport"));
@@ -71,10 +72,27 @@ exports.auth = (secretName) => {
                 });
             }
             else if (level === 'eAdmin') {
-                // True
-                // return done(undefined, {넣고 싶은것});
-                // False
-                return done(undefined, null);
+                const admins = new MongoAdmins_1.Admins();
+                admins._id = jwtPayload._id;
+                const user = serviceAccount.getAdminById(admins);
+                return user
+                    .then(userResult => {
+                    // console.log('user result:', userResult);
+                    if (userResult) {
+                        // 유저는 존재 하고, 이벤트 체크가 필요한경우 여기에...
+                        const userInfo = Object.assign({}, userResult, {
+                            eventId: jwtPayload.eventId,
+                        });
+                        return done(undefined, userInfo);
+                    }
+                    else {
+                        return done('noEventId', null);
+                    }
+                })
+                    .catch(error => {
+                    console.log('passport error:', error);
+                    return done('dbError', null);
+                });
             }
             else {
                 return done(undefined, null);
