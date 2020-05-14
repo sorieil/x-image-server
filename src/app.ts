@@ -51,6 +51,7 @@ connections(process.env)
 
         // Admin Route
         const authCheck = auth('xsync-user').isAuthenticate;
+        const authAdminCheck = auth('xsync-admin').isAuthenticate;
 
         // app.get(RouterRole['/api/v1/sample'], ...admin.apiGet);
         app.get(RouterV1['root'], async (_req: Request, res: Response) => {
@@ -59,6 +60,7 @@ connections(process.env)
 
         app.get(RouterV1['image'], authCheck, ...image.apiGet);
         app.post(RouterV1['image'], authCheck, ...image.apiPost);
+        app.post(RouterV1['imageAdmin'], authAdminCheck, ...image.apiPost);
 
         /**s
          * Error Handler. Provides full stack - remove for production

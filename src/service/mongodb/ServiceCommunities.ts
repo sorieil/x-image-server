@@ -41,7 +41,7 @@ export default class ServiceCommunities {
         await new Promise(resolve => {
             console.log('query:', query.length);
             query.map((v: any) => {
-                console.log(v.comment);
+                // console.log(v.comment);
                 if (typeof v.comment !== 'undefined') {
                     return v.comment.map((c: any) =>
                         Object.assign(c, {

@@ -31,7 +31,7 @@ export const auth = (secretName: secretNameType) => {
         secretName,
         new Strategy(opts, async (jwtPayload, done) => {
             console.log('---- first time ---');
-            console.log(jwtPayload);
+            // console.log(jwtPayload);
             try {
                 const serviceAccount = new ServiceAuth();
                 const level = jwtPayload.level;
@@ -108,7 +108,7 @@ export const auth = (secretName: secretNameType) => {
             { session: false },
             (err, user, info) => {
                 // console.log('request:', req.headers);
-                console.log(err, user, info);
+                // console.log(err, user, info);
                 if (err === 'dbError') {
                     responsePrint(res);
                     res.status(500).json({

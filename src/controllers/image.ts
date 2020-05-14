@@ -13,11 +13,24 @@ const s3 = new aws.S3({
     accessKeyId: 'AKIARKY6OJBAFI2O42CL',
     secretAccessKey: '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',
 });
-const fileFilter = (req: any, file: { mimetype: string }, cb: any) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-        cb(null, true);
-    } else {
-        cb(new Error('Invalid Mime Type, Only JPEG,PNG.'), true);
+const fileFilter = (req: Request, file: { mimetype: string }, cb: any) => {
+    try {
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            cb(null, true);
+        } else {
+            // console.log(req.res);
+            responseJson(
+                req.res,
+                ['이미지 파일을 선택해주세요.'],
+                'POST',
+                'invalid',
+            );
+            cb('이미지 파일을 선택해 주세요.', true);
+        }
+
+        console.log('req:', req);
+    } catch (err) {
+        return false;
     }
 };
 const upload = multer({
