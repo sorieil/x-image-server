@@ -5,5 +5,5 @@
 export enum RouterV1 {
     'root' = '/',
     'image' = '/api/v1/image',
-    'imageAdmin' = '/api/v1/image',
+    'imageAdmin' = '/api/v1/image-admin',
 }

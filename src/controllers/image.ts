@@ -30,7 +30,7 @@ const fileFilter = (req: Request, file: { mimetype: string }, cb: any) => {
 
         console.log('req:', req);
     } catch (err) {
-        return false;
+        tryCatch(req.res, err);
     }
 };
 const upload = multer({
