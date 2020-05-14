@@ -15,7 +15,7 @@ git checkout -t origin/dev
 echo "Success git pull"
 yarn --production=false
 echo "Success node_moduels"
-npx tsc
+#npx tsc You have to complie at this point, but I'm temporarily compiling locally for server performonce issues.
 echo "Success Build"
 cd ~
 rm -rf $DIR

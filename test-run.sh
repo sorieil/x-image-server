@@ -11,7 +11,7 @@ ssh-add ~/.ssh/bitbucket_rsa
 git clone git@bitbucket.org:xsync_development/server-image-api.git $TEMP_DIR
 echo "Clone success"
 cd $TEMP_DIR
-# git checkout -t origin/master
+git checkout -t origin/test
 echo "Success git pull"
 yarn --production=false
 echo "Success node_moduels"
