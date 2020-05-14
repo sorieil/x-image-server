@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: 'Conference API',
+            name: 'Image API',
             autorestart: true,
             script: './dist/app.js',
             env: {
