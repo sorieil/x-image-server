@@ -1,3 +1,4 @@
+import { Admins } from './../entity/mongodb/main/MongoAdmins';
 import { Accounts } from './../entity/mongodb/main/MongoAccounts';
 import { Strategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
 import passport from 'passport';
@@ -71,10 +72,26 @@ export const auth = (secretName: secretNameType) => {
                             return done('dbError', null);
                         });
                 } else if (level === 'eAdmin') {
-                    // True
-                    // return done(undefined, {넣고 싶은것});
-                    // False
-                    return done(undefined, null);
+                    const admins = new Admins();
+                    admins._id = jwtPayload._id;
+                    const user = serviceAccount.getAdminById(admins);
+                    return user
+                        .then(userResult => {
+                            // console.log('user result:', userResult);
+                            if (userResult) {
+                                // 유저는 존재 하고, 이벤트 체크가 필요한경우 여기에...
+                                const userInfo = Object.assign({}, userResult, {
+                                    eventId: jwtPayload.eventId,
+                                });
+                                return done(undefined, userInfo);
+                            } else {
+                                return done('noEventId', null);
+                            }
+                        })
+                        .catch(error => {
+                            console.log('passport error:', error);
+                            return done('dbError', null);
+                        });
                 } else {
                     return done(undefined, null);
                 }

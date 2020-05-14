@@ -71,6 +71,6 @@ export const AccountsSchema: Schema = new Schema({
     permission: { type: Array },
 });
 export const Accounts = mongoManager.model<AccountsI>(
-    'Accounts',
+    'accounts',
     AccountsSchema,
 );
