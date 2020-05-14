@@ -1,10 +1,19 @@
-image: atlassian/default-image:latest
-pipelines:
-    branches:
-        test:
-            - step:
-                  name: Build & Deploy
-                  deployment: test
-                  script:
-                      - ssh centos@$(echo $DEPLOY_SERVER_IP) 'bash -s' < ./run.sh
-                      - echo 'Deploy success!!!'
+module.exports = {
+    apps: [
+        {
+            name: "dev",
+            script: "./dist/app.js",
+            env: {
+                NODE_ENV: 'development',
+            }
+        },
+        {
+            name: "test",
+            script: "npm",
+            args: "run start",
+            env: {
+                NODE_ENV: 'production',
+            }
+        }
+    ]
+}

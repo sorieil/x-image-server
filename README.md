@@ -1,42 +1,43 @@
 <<<<<<< HEAD
+
 # Xsync API
 
-> Xsync api server for BMM.
+> Xsync image api server.
 
 # Run Development
 
-- docker-compose up
-- yarn
-- yarn dev-start-nodemon
+-   docker-compose up
+-   yarn
+-   yarn dev-start-nodemon
 
 # Run Product
 
-- yarn start
+-   yarn start
 
 # Pre-reqs
 
 To build and run this app locally you will need a few things:
 
-- docker
-- node.js
-- VS code
-- Require your mongodb dump file in ./mongo-dump.
-  > ./mongo-dump/ `<dump files>`
+-   docker
+-   node.js
+-   VS code
+-   Require your mongodb dump file in ./mongo-dump.
+    > ./mongo-dump/ `<dump files>`
 
 # Server specific
 
-- Server
-  - nodejs:8
-- Language
-  - typescript
-- ORM: typeorm
-  - mysql
-  - mongodb
-- Build tools
-  - webpack
-- Docker-compose
-- Referrence
-  - MS Typescript nodejs starter
+-   Server
+    -   nodejs:8
+-   Language
+    -   typescript
+-   ORM: typeorm
+    -   mysql
+    -   mongodb
+-   Build tools
+    -   webpack
+-   Docker-compose
+-   Referrence
+    -   MS Typescript nodejs starter
 
 # Description
 
