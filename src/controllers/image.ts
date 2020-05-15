@@ -27,8 +27,6 @@ const fileFilter = (req: Request, file: { mimetype: string }, cb: any) => {
             );
             // cb('이미지 파일을 선택해 주세요.', true);
         }
-
-        console.log('req:', req);
     } catch (err) {
         tryCatch(req.res, err);
     }

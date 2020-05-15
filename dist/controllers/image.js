@@ -36,7 +36,6 @@ const fileFilter = (req, file, cb) => {
             common_1.responseJson(req.res, ['이미지 파일을 선택해주세요.'], 'POST', 'invalid');
             // cb('이미지 파일을 선택해 주세요.', true);
         }
-        console.log('req:', req);
     }
     catch (err) {
         common_1.tryCatch(req.res, err);

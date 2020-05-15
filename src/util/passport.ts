@@ -31,8 +31,6 @@ export const auth = (secretName: secretNameType) => {
     passport.use(
         secretName,
         new Strategy(opts, async (jwtPayload, done) => {
-            console.log('---- first time ---');
-            // console.log(jwtPayload);
             try {
                 const serviceAccount = new ServiceAuth();
                 const level = jwtPayload.level;
@@ -104,13 +102,11 @@ export const auth = (secretName: secretNameType) => {
     // };
 
     passport.serializeUser<any, any>((user, done) => {
-        console.log('serializeUser: ', user);
         logger.info('serializeUser: ', user);
         done(undefined, user.id);
     });
 
     passport.deserializeUser((id, done) => {
-        console.log('deserializeUser: ', id);
         logger.info('deserializeUser: ', id);
         done(undefined, id);
     });

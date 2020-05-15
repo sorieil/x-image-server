@@ -34,8 +34,6 @@ exports.auth = (secretName) => {
     };
     // done callback
     passport_1.default.use(secretName, new passport_jwt_1.Strategy(opts, (jwtPayload, done) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log('---- first time ---');
-        // console.log(jwtPayload);
         try {
             const serviceAccount = new ServiceAuth_1.default();
             const level = jwtPayload.level;
@@ -105,12 +103,10 @@ exports.auth = (secretName) => {
     })));
     // };
     passport_1.default.serializeUser((user, done) => {
-        console.log('serializeUser: ', user);
         logger_1.default.info('serializeUser: ', user);
         done(undefined, user.id);
     });
     passport_1.default.deserializeUser((id, done) => {
-        console.log('deserializeUser: ', id);
         logger_1.default.info('deserializeUser: ', id);
         done(undefined, id);
     });
