@@ -1,4 +1,4 @@
-import { ImageLogI, ImageLog } from './../../entity/mongodb/main/MongoImageLog';
+import { ImageLogI, ImageLog } from '../../entity/mongodb/log/MongoImageLog';
 export default class ServiceImageLog {
     constructor() {}
     public async post(imageLog: ImageLogI): Promise<ImageLogI> {

@@ -1,5 +1,5 @@
 import { Event } from './../entity/mongodb/main/MongoEvent';
-import { ImageLog } from './../entity/mongodb/main/MongoImageLog';
+import { ImageLog } from '../entity/mongodb/log/MongoImageLog';
 import { Accounts } from './../entity/mongodb/main/MongoAccounts';
 import { Request, Response } from 'express';
 import { responseJson, RequestRole, tryCatch } from '../util/common';
