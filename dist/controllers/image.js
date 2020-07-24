@@ -85,13 +85,25 @@ const apiPost = [
             }
             const image = req.files;
             const file = fs_1.default.readFileSync(image.images[0].path);
+            let width = 0;
+            let height = 0;
+            let quality = 90;
+            yield sharp_1.default(file)
+                .metadata()
+                .then(metadata => {
+                width = metadata.width;
+                height = metadata.height;
+            });
+            // if (width < 800) {
+            //     quality = 60;
+            // }
             const filename = yield sharp_1.default(file)
                 .rotate()
-                .webp()
-                // .png()
+                //.webp()
+                .jpeg({ quality: 100, progressive: true })
                 .toBuffer();
             // 오리지널 데이터 저장 주소: 이벤트/유저 디렉토리
-            const mimetype = 'webp';
+            const mimetype = 'image/jpeg';
             const myBucket = `xsync-image-server/${user.eventId}`;
             // 파일명
             const subKey = user._id.toString().slice(0, 10);
@@ -133,11 +145,13 @@ const apiPost = [
                         delete image.images[0].filename;
                         delete image.images[0].path;
                         const original = image.images[0];
-                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=320&f=webp&q=90`;
+                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=320&f=jpeg&q=90`;
                         const imageLog = new MongoImageLog_1.ImageLog();
                         imageLog.accountId = user._id;
                         imageLog.eventId = user.eventId;
                         imageLog.original = original;
+                        imageLog.originalWidth = width;
+                        imageLog.originalHeight = height;
                         imageLog.outUrl = url;
                         imageLog.size = getS3.ContentLength;
                         imageLog.mimetype = mimetype;

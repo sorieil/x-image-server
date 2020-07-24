@@ -7,6 +7,8 @@ exports.ImageLogSchema = new mongoose_1.Schema({
     accountId: { type: mongoose_1.Schema.Types.ObjectId, indexes: true },
     eventId: { type: mongoose_1.Schema.Types.ObjectId, indexes: true },
     original: { type: Object },
+    originalWidth: { type: Number, default: 0 },
+    originalHeight: { type: Number, default: 0 },
     outUrl: { type: String },
     size: { type: Number, default: 0 },
     mimetype: { type: String },
