@@ -131,7 +131,7 @@ const apiPost = [
                         delete image.images[0].path;
                         const original = image.images[0];
 
-                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=640&f=webp&q=90`;
+                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=320&f=webp&q=90`;
 
                         const imageLog = new ImageLog();
                         imageLog.accountId = user._id;

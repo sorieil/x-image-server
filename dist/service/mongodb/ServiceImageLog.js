@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const MongoImageLog_1 = require("./../../entity/mongodb/main/MongoImageLog");
+const MongoImageLog_1 = require("../../entity/mongodb/log/MongoImageLog");
 class ServiceImageLog {
     constructor() { }
     post(imageLog) {

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const MongoEvent_1 = require("./../entity/mongodb/main/MongoEvent");
-const MongoImageLog_1 = require("./../entity/mongodb/main/MongoImageLog");
+const MongoImageLog_1 = require("../entity/mongodb/log/MongoImageLog");
 const MongoAccounts_1 = require("./../entity/mongodb/main/MongoAccounts");
 const common_1 = require("../util/common");
 const express_validator_1 = require("express-validator");
@@ -133,7 +133,7 @@ const apiPost = [
                         delete image.images[0].filename;
                         delete image.images[0].path;
                         const original = image.images[0];
-                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=640&f=webp&q=90`;
+                        const url = `https://d4falz9iw5uvg.cloudfront.net/${user.eventId}/${myKey}?w=320&f=webp&q=90`;
                         const imageLog = new MongoImageLog_1.ImageLog();
                         imageLog.accountId = user._id;
                         imageLog.eventId = user.eventId;
