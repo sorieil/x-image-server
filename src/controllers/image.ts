@@ -98,7 +98,7 @@ const apiPost = [
                 .toBuffer();
 
             // 오리지널 데이터 저장 주소: 이벤트/유저 디렉토리
-            const mimetype = 'image/jpeg';
+            const mimetype = 'jpeg';
             const myBucket = `xsync-image-server/${user.eventId}`;
             // 파일명
             const subKey = user._id.toString().slice(0, 10);
