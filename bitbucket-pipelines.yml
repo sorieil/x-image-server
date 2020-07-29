@@ -15,3 +15,10 @@ pipelines:
                   script:
                       - ssh ubuntu@$(echo $DEPLOY_SERVER_IP) 'bash -s' < ./test-run.sh
                       - echo 'Test Deploy success!!!'
+        master:
+            - step:
+                  name: Master Build & Deploy
+                  deployment: master
+                  script:
+                      - ssh ubuntu@$(echo $DEPLOY_SERVER_IP) 'bash -s' < ./run.sh
+                      - echo 'Master Deploy success!!!'
